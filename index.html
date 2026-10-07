@@ -44,8 +44,12 @@
         </div>
       </div>
       <div class="flex items-center space-x-2">
+        <button onclick="openSettingsModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 flex items-center space-x-1.5 transition-all">
+          <i class="fa-solid fa-gear text-amber-400"></i>
+          <span>ตั้งค่าระบบ / ล้างค่า</span>
+        </button>
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> ระบบออนไลน์
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> ออนไลน์
         </span>
       </div>
     </div>
@@ -139,7 +143,7 @@
         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm lg:col-span-2">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-base font-semibold text-slate-800 flex items-center">
-              <i class="fa-solid fa-bell text-amber-500 mr-2"></i> สินค้าที่ต้องจัดซื้อเพิ่มเร่งด่วน (LUXASIA WH)
+              <i class="fa-solid fa-bell text-amber-500 mr-2"></i> รายการที่สต็อกต่ำกว่าจุดเตือน (LUXASIA WH)
             </h3>
             <span class="text-xs text-slate-400">อัปเดตอัตโนมัติ</span>
           </div>
@@ -175,9 +179,14 @@
             <option value="all">ทุกหมวดหมู่</option>
           </select>
         </div>
-        <button onclick="openItemModal()" class="w-full sm:w-auto px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm flex items-center justify-center space-x-2 transition-all">
-          <i class="fa-solid fa-plus"></i> <span>เพิ่มพัสดุ / ยาตัวใหม่</span>
-        </button>
+        <div class="flex items-center space-x-2 w-full sm:w-auto">
+          <button onclick="resetAllStockToZero()" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 text-sm font-semibold rounded-xl border border-rose-200 flex items-center justify-center space-x-1 transition-all">
+            <i class="fa-solid fa-rotate-left"></i> <span>ตั้งสต็อกเป็น 0 ทั้งหมด</span>
+          </button>
+          <button onclick="openItemModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm flex items-center justify-center space-x-2 transition-all">
+            <i class="fa-solid fa-plus"></i> <span>เพิ่มพัสดุ / ยาตัวใหม่</span>
+          </button>
+        </div>
       </div>
 
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
@@ -364,6 +373,52 @@
 
   </main>
 
+  <!-- MODAL: SETTINGS & RESET DATA -->
+  <div id="settings-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 class="font-bold text-lg text-slate-800 flex items-center">
+          <i class="fa-solid fa-screwdriver-wrench text-amber-500 mr-2"></i> จัดการฐานข้อมูลและรีเซ็ต
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="space-y-3 py-2">
+        <div class="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-sm text-amber-900">ตั้งค่าสต็อกทั้งหมดเป็น 0</h4>
+            <p class="text-xs text-amber-700">คงรายชื่อสินค้าเดิมไว้ แต่เปลี่ยนยอดคงเหลือเป็น 0 ทั้งหมด</p>
+          </div>
+          <button onclick="resetAllStockToZero()" class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold whitespace-nowrap shadow-sm">
+            รีเซ็ตเป็น 0
+          </button>
+        </div>
+
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-sm text-slate-800">ล้างประวัติรับเข้า-เบิกออก</h4>
+            <p class="text-xs text-slate-500">ลบเฉพาะบันทึกประวัติการเบิกออกและรับเข้า</p>
+          </div>
+          <button onclick="clearHistoryLogs()" class="px-3 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded-xl text-xs font-bold whitespace-nowrap shadow-sm">
+            ล้างประวัติ
+          </button>
+        </div>
+
+        <div class="p-4 bg-rose-50 border border-rose-200 rounded-2xl flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-sm text-rose-900">คืนค่าเริ่มต้นระบบทั้งหมด</h4>
+            <p class="text-xs text-rose-700">ล้างข้อมูลทั้งหมดแล้วโหลดค่าเริ่มต้นใหม่</p>
+          </div>
+          <button onclick="factoryReset()" class="px-3 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold whitespace-nowrap shadow-sm">
+            ล้างทั้งหมด
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-end pt-2 border-t">
+        <button onclick="closeSettingsModal()" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-100 rounded-xl">ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL: ADD / EDIT ITEM -->
   <div id="item-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
@@ -410,7 +465,7 @@
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">จุดเตือนสั่งซื้อ</label>
-            <input type="number" id="item-min" min="1" required class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500" value="10">
+            <input type="number" id="item-min" min="0" required class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500" value="10">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">ต้นทุน/หน่วย (฿)</label>
@@ -465,20 +520,20 @@
       { id: 'cat-6', name: 'ยาสามัญประจำที่ทำงาน / ปฐมพยาบาล', prefix: 'MED', desc: 'ยาแก้ปวด ยาแก้แพ้ แอลกอฮอล์ ทำแผล' }
     ];
 
-    // INITIAL DEMO ITEMS
+    // INITIAL DEMO ITEMS (สต็อกตั้งต้น 0 ทั้งหมด)
     const defaultItems = [
-      { id: 'it-1', sku: 'BOX-001', name: 'กล่องพัสดุ เบอร์ 0', spec: '11 x 17 x 6 ซม.', catId: 'cat-1', unit: 'ใบ', location: 'Rack A-01', stock: 150, min: 50, cost: 2.5 },
-      { id: 'it-2', sku: 'BOX-002', name: 'กล่องพัสดุ เบอร์ 2A', spec: '14 x 20 x 12 ซม.', catId: 'cat-1', unit: 'ใบ', location: 'Rack A-02', stock: 85, min: 40, cost: 4.2 },
-      { id: 'it-3', sku: 'BOX-003', name: 'กล่องพัสดุ เบอร์ B', spec: '17 x 25 x 9 ซม.', catId: 'cat-1', unit: 'ใบ', location: 'Rack A-03', stock: 15, min: 30, cost: 5.0 },
-      { id: 'it-4', sku: 'FLM-001', name: 'ฟิล์มยืดพันพาเลท Hand Roll', spec: '15 ไมครอน x 500 ม.', catId: 'cat-2', unit: 'ม้วน', location: 'Pallet B-01', stock: 24, min: 10, cost: 110.0 },
-      { id: 'it-5', sku: 'TAP-001', name: 'เทป OPP สีใส 2 นิ้ว', spec: 'ยาว 45 หลา เหนียวพิเศษ', catId: 'cat-3', unit: 'ม้วน', location: 'Rack C-01', stock: 8, min: 20, cost: 18.0 },
-      { id: 'it-6', sku: 'TAP-002', name: 'เทป OPP สีชา 2 นิ้ว', spec: 'ยาว 100 หลา สำหรับแพ็คหนัก', catId: 'cat-3', unit: 'ม้วน', location: 'Rack C-02', stock: 35, min: 15, cost: 26.0 },
-      { id: 'it-7', sku: 'CUS-001', name: 'ม้วนแอร์บับเบิ้ลกันกระแทก', spec: 'หน้ากว้าง 65 ซม. ยาว 100 ม.', catId: 'cat-4', unit: 'ม้วน', location: 'Zone Bulk-1', stock: 12, min: 5, cost: 145.0 },
-      { id: 'it-8', sku: 'PPR-001', name: 'สติกเกอร์ Direct Thermal', spec: '100 x 150 มม. (500 ดวง)', catId: 'cat-5', unit: 'ม้วน', location: 'Rack C-04', stock: 6, min: 12, cost: 85.0 },
-      { id: 'it-9', sku: 'MED-001', name: 'พาราเซตามอล 500 มก.', spec: 'แผง 10 เม็ด บรรเทาปวด-ลดไข้', catId: 'cat-6', unit: 'แผง', location: 'ตู้ยา ชั้น 1', stock: 18, min: 10, cost: 12.0 },
-      { id: 'it-10', sku: 'MED-002', name: 'แอลกอฮอล์ล้างแผล 70%', spec: 'ขวด 450 มล.', catId: 'cat-6', unit: 'ขวด', location: 'ตู้ยา ชั้น 2', stock: 4, min: 5, cost: 45.0 },
-      { id: 'it-11', sku: 'MED-003', name: 'พลาสเตอร์ยาปิดแผลกันน้ำ', spec: 'กล่อง 100 ชิ้น', catId: 'cat-6', unit: 'กล่อง', location: 'ตู้ยา ชั้น 1', stock: 3, min: 2, cost: 65.0 },
-      { id: 'it-12', sku: 'MED-004', name: 'ยาแก้แพ้ เซทิริซีน 10mg', spec: 'แผง 10 เม็ด บรรเทาหวัด แพ้อากาศ', catId: 'cat-6', unit: 'แผง', location: 'ตู้ยา ชั้น 1', stock: 15, min: 5, cost: 25.0 }
+      { id: 'it-1', sku: 'BOX-001', name: 'กล่องพัสดุ เบอร์ 0', spec: '11 x 17 x 6 ซม.', catId: 'cat-1', unit: 'ใบ', location: 'Rack A-01', stock: 0, min: 50, cost: 2.5 },
+      { id: 'it-2', sku: 'BOX-002', name: 'กล่องพัสดุ เบอร์ 2A', spec: '14 x 20 x 12 ซม.', catId: 'cat-1', unit: 'ใบ', location: 'Rack A-02', stock: 0, min: 40, cost: 4.2 },
+      { id: 'it-3', sku: 'BOX-003', name: 'กล่องพัสดุ เบอร์ B', spec: '17 x 25 x 9 ซม.', catId: 'cat-1', unit: 'ใบ', location: 'Rack A-03', stock: 0, min: 30, cost: 5.0 },
+      { id: 'it-4', sku: 'FLM-001', name: 'ฟิล์มยืดพันพาเลท Hand Roll', spec: '15 ไมครอน x 500 ม.', catId: 'cat-2', unit: 'ม้วน', location: 'Pallet B-01', stock: 0, min: 10, cost: 110.0 },
+      { id: 'it-5', sku: 'TAP-001', name: 'เทป OPP สีใส 2 นิ้ว', spec: 'ยาว 45 หลา เหนียวพิเศษ', catId: 'cat-3', unit: 'ม้วน', location: 'Rack C-01', stock: 0, min: 20, cost: 18.0 },
+      { id: 'it-6', sku: 'TAP-002', name: 'เทป OPP สีชา 2 นิ้ว', spec: 'ยาว 100 หลา สำหรับแพ็คหนัก', catId: 'cat-3', unit: 'ม้วน', location: 'Rack C-02', stock: 0, min: 15, cost: 26.0 },
+      { id: 'it-7', sku: 'CUS-001', name: 'ม้วนแอร์บับเบิ้ลกันกระแทก', spec: 'หน้ากว้าง 65 ซม. ยาว 100 ม.', catId: 'cat-4', unit: 'ม้วน', location: 'Zone Bulk-1', stock: 0, min: 5, cost: 145.0 },
+      { id: 'it-8', sku: 'PPR-001', name: 'สติกเกอร์ Direct Thermal', spec: '100 x 150 มม. (500 ดวง)', catId: 'cat-5', unit: 'ม้วน', location: 'Rack C-04', stock: 0, min: 12, cost: 85.0 },
+      { id: 'it-9', sku: 'MED-001', name: 'พาราเซตามอล 500 มก.', spec: 'แผง 10 เม็ด บรรเทาปวด-ลดไข้', catId: 'cat-6', unit: 'แผง', location: 'ตู้ยา ชั้น 1', stock: 0, min: 10, cost: 12.0 },
+      { id: 'it-10', sku: 'MED-002', name: 'แอลกอฮอล์ล้างแผล 70%', spec: 'ขวด 450 มล.', catId: 'cat-6', unit: 'ขวด', location: 'ตู้ยา ชั้น 2', stock: 0, min: 5, cost: 45.0 },
+      { id: 'it-11', sku: 'MED-003', name: 'พลาสเตอร์ยาปิดแผลกันน้ำ', spec: 'กล่อง 100 ชิ้น', catId: 'cat-6', unit: 'กล่อง', location: 'ตู้ยา ชั้น 1', stock: 0, min: 2, cost: 65.0 },
+      { id: 'it-12', sku: 'MED-004', name: 'ยาแก้แพ้ เซทิริซีน 10mg', spec: 'แผง 10 เม็ด บรรเทาหวัด แพ้อากาศ', catId: 'cat-6', unit: 'แผง', location: 'ตู้ยา ชั้น 1', stock: 0, min: 5, cost: 25.0 }
     ];
 
     // APPLICATION STATE
@@ -496,6 +551,48 @@
       localStorage.setItem('smart_stock_tx', JSON.stringify(transactions));
     }
 
+    // RESET & SETTINGS FUNCTIONS
+    function openSettingsModal() {
+      document.getElementById('settings-modal').classList.remove('hidden');
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settings-modal').classList.add('hidden');
+    }
+
+    function resetAllStockToZero() {
+      if (confirm('คุณต้องการรีเซ็ตยอดคงเหลือของทุกรายการให้เป็น 0 ใช่หรือไม่? (รายชื่อสินค้าและรหัส SKU จะยังคงอยู่ครบ)')) {
+        items.forEach(it => it.stock = 0);
+        persistData();
+        closeSettingsModal();
+        renderDashboard();
+        renderInventory();
+        alert('รีเซ็ตยอดสต็อกเป็น 0 ทุกรายการเรียบร้อยแล้ว');
+      }
+    }
+
+    function clearHistoryLogs() {
+      if (confirm('คุณต้องการล้างประวัติการเบิก-รับเข้าทั้งหมดใช่หรือไม่?')) {
+        transactions = [];
+        persistData();
+        closeSettingsModal();
+        renderHistory();
+        alert('ล้างประวัติการเบิก-รับเข้าเรียบร้อยแล้ว');
+      }
+    }
+
+    function factoryReset() {
+      if (confirm('คำเตือน: การล้างทั้งหมดจะคืนค่าระบบกลับสู่จุดเริ่มต้น คุณแน่ใจหรือไม่?')) {
+        localStorage.clear();
+        categories = [...defaultCategories];
+        items = [...defaultItems];
+        transactions = [];
+        persistData();
+        closeSettingsModal();
+        location.reload();
+      }
+    }
+
     // TAB NAVIGATION
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -505,7 +602,7 @@
       });
 
       const targetView = document.getElementById(`view-${tabId}`);
-      const targetBtn = document.getElementById(`tab-tab-${tabId}`) || document.getElementById(`tab-${tabId}`);
+      const targetBtn = document.getElementById(`tab-${tabId}`);
       if (targetView) targetView.classList.remove('hidden');
       if (targetBtn) {
         targetBtn.classList.remove('text-slate-600', 'font-medium');
@@ -558,7 +655,6 @@
         }).join('');
       }
 
-      // Render Doughnut Chart
       renderChart();
     }
 
@@ -582,10 +678,10 @@
       categoryChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: labels,
+          labels: labels.length > 0 ? labels : ['ไม่มีมูลค่าสินค้าคงเหลือ'],
           datasets: [{
-            data: dataVals,
-            backgroundColor: ['#4f46e5', '#10b981', '#f59e0b', '#06b6d4', '#ec4899', '#8b5cf6', '#64748b']
+            data: dataVals.length > 0 ? dataVals : [1],
+            backgroundColor: dataVals.length > 0 ? ['#4f46e5', '#10b981', '#f59e0b', '#06b6d4', '#ec4899', '#8b5cf6', '#64748b'] : ['#e2e8f0']
           }]
         },
         options: {
@@ -604,7 +700,6 @@
       const catFilter = document.getElementById('inventory-category-filter').value;
       const selectBox = document.getElementById('inventory-category-filter');
 
-      // Update Filter Options
       const currentVal = selectBox.value;
       selectBox.innerHTML = '<option value="all">ทุกหมวดหมู่</option>' + categories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
       selectBox.value = currentVal || 'all';
@@ -700,7 +795,7 @@
       const unit = document.getElementById('item-unit').value.trim();
       const location = document.getElementById('item-location').value.trim();
       const stock = parseInt(document.getElementById('item-stock').value) || 0;
-      const min = parseInt(document.getElementById('item-min').value) || 5;
+      const min = parseInt(document.getElementById('item-min').value) || 0;
       const cost = parseFloat(document.getElementById('item-cost').value) || 0;
 
       const dup = items.find(it => it.sku === sku && it.id !== id);
