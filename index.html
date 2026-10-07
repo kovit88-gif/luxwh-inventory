@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1 class="font-bold text-lg leading-tight tracking-wide">LUXWH Supplies Inventory</h1>
-<p class="text-xs text-indigo-200">LUXASIA WH - Packaging, Office & Medical Supplies</p>
+  <title>LUXWH Supplies Inventory - คลังอุปกรณ์ & ยาสามัญ</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Prompt -->
@@ -33,20 +32,20 @@
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
   <!-- Header -->
-  <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-40">
+  <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-emerald-400 flex items-center justify-center shadow-md">
-          <i class="fa-solid fa-boxes-stacked text-white text-lg"></i>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-indigo-600 flex items-center justify-center shadow-md">
+          <i class="fa-solid fa-warehouse text-white text-lg"></i>
         </div>
         <div>
-          <h1 class="font-bold text-lg leading-tight tracking-wide">SmartStock Pro</h1>
-          <p class="text-xs text-indigo-200">Office, Packaging & First-Aid Inventory</p>
+          <h1 class="font-bold text-lg leading-tight tracking-wide text-amber-400">LUXWH Supplies Inventory</h1>
+          <p class="text-xs text-slate-300">LUXASIA WH • Packaging, Supplies & First-Aid System</p>
         </div>
       </div>
       <div class="flex items-center space-x-2">
         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> ระบบพร้อมใช้งาน
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span> ระบบออนไลน์
         </span>
       </div>
     </div>
@@ -84,9 +83,9 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">รายการสินค้าทั้งหมด</p>
+            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">รายการทั้งหมดใน WH</p>
             <p id="kpi-total-items" class="text-2xl font-bold text-slate-900 mt-1">0</p>
-            <p class="text-xs text-slate-400 mt-1">SKU ในระบบ</p>
+            <p class="text-xs text-slate-400 mt-1">SKU ในคลังสินค้า</p>
           </div>
           <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
             <i class="fa-solid fa-cubes"></i>
@@ -95,7 +94,7 @@
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">จำนวนของในคลังรวม</p>
+            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">ยอดคงคลังรวม</p>
             <p id="kpi-total-qty" class="text-2xl font-bold text-slate-900 mt-1">0</p>
             <p class="text-xs text-slate-400 mt-1">ชิ้น / กล่อง / ม้วน</p>
           </div>
@@ -106,7 +105,7 @@
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">มูลค่าสต็อกรวม</p>
+            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">มูลค่าคงคลังรวม</p>
             <p id="kpi-total-value" class="text-2xl font-bold text-indigo-600 mt-1">฿0</p>
             <p class="text-xs text-slate-400 mt-1">คำนวณจากราคาต้นทุน</p>
           </div>
@@ -117,9 +116,9 @@
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
-            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">รายการใกล้หมด (Low Stock)</p>
+            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">ของใกล้หมด (Low Stock)</p>
             <p id="kpi-low-stock" class="text-2xl font-bold text-rose-600 mt-1">0</p>
-            <p class="text-xs text-rose-400 mt-1">ต่ำกว่า Reorder Point</p>
+            <p class="text-xs text-rose-400 mt-1">ต่ำกว่าจุด Min/Reorder</p>
           </div>
           <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl">
             <i class="fa-solid fa-triangle-exclamation"></i>
@@ -140,7 +139,7 @@
         <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm lg:col-span-2">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-base font-semibold text-slate-800 flex items-center">
-              <i class="fa-solid fa-bell text-amber-500 mr-2"></i> สินค้าที่ต้องจัดซื้อเพิ่มเร่งด่วน
+              <i class="fa-solid fa-bell text-amber-500 mr-2"></i> สินค้าที่ต้องจัดซื้อเพิ่มเร่งด่วน (LUXASIA WH)
             </h3>
             <span class="text-xs text-slate-400">อัปเดตอัตโนมัติ</span>
           </div>
@@ -190,7 +189,7 @@
                 <th class="p-3.5">ชื่อพัสดุ / ยาสามัญ</th>
                 <th class="p-3.5">ขนาด / สเปก</th>
                 <th class="p-3.5">หมวดหมู่</th>
-                <th class="p-3.5">ตำแหน่งจัดเก็บ</th>
+                <th class="p-3.5">ตำแหน่งจัดเก็บ (Location)</th>
                 <th class="p-3.5 text-right">คงเหลือ</th>
                 <th class="p-3.5 text-right">ต้นทุน/หน่วย</th>
                 <th class="p-3.5 text-center">จัดการ</th>
@@ -208,7 +207,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center">
           <h3 class="text-base font-bold text-slate-800 mb-2 flex items-center">
-            <i class="fa-solid fa-camera mr-2 text-indigo-600"></i> กล้องสแกน QR Code
+            <i class="fa-solid fa-camera mr-2 text-indigo-600"></i> กล้องสแกน QR Code (LUXWH)
           </h3>
           <p class="text-xs text-slate-500 mb-4 text-center">ส่องกล้องไปที่ป้าย QR หน้ากล่องหรือชั้นวางเพื่อเลือกรหัสอัตโนมัติ</p>
           <div id="reader-container" class="w-full max-w-sm rounded-xl overflow-hidden border-2 border-dashed border-indigo-200 bg-slate-50 p-2 flex flex-col items-center justify-center min-h-[260px] relative">
@@ -230,7 +229,7 @@
 
         <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
           <div class="flex items-center justify-between mb-4 border-b pb-3">
-            <h3 class="text-base font-bold text-slate-800">ทำรายการเบิก-รับเข้าอุปกรณ์ / ยาสามัญ</h3>
+            <h3 class="text-base font-bold text-slate-800">ทำรายการเบิก-รับเข้าพัสดุ / ยาสามัญ</h3>
             <div class="flex bg-slate-100 p-1 rounded-xl">
               <button type="button" id="btn-mode-out" onclick="setOperationMode('OUT')" class="px-4 py-1.5 rounded-lg text-sm font-bold bg-white text-rose-600 shadow-sm transition-all">
                 <i class="fa-solid fa-arrow-up-from-bracket mr-1"></i> เบิกออก (OUT)
@@ -273,13 +272,13 @@
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">แผนก / ฝ่าย *</label>
-              <input type="text" id="tx-department" required class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="เช่น คลังสินค้า, แพ็คกิ้ง, ฝ่ายบุคคล, ธุรการ">
+              <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">แผนก / ฝ่าย (Department) *</label>
+              <input type="text" id="tx-department" required class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="เช่น คลังสินค้า, แพ็คกิ้ง, ฝ่ายบุคคล, ขนส่ง">
             </div>
 
             <div>
               <label id="tx-note-label" class="block text-xs font-semibold text-slate-600 uppercase mb-1">Note บันทึก / วัตถุประสงค์ / อาการเบื้องต้น</label>
-              <textarea id="tx-notes" rows="2" class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="เช่น มีดบาดแผลตื้น, ปวดศีรษะ, หรือเบิกไปใช้กับแพ็คออเดอร์พาเลท A-01"></textarea>
+              <textarea id="tx-notes" rows="2" class="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="เช่น มีดบาดแผลตื้น, ปวดศีรษะ, หรือเบิกไปใช้กับพาเลท A-01"></textarea>
             </div>
 
             <button type="submit" id="tx-submit-btn" class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center space-x-2">
@@ -294,7 +293,7 @@
     <div id="view-categories" class="tab-content hidden space-y-6">
       <div class="flex justify-between items-center bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <div>
-          <h3 class="font-bold text-slate-800">หมวดหมู่พัสดุและเวชภัณฑ์</h3>
+          <h3 class="font-bold text-slate-800">หมวดหมู่พัสดุและเวชภัณฑ์ (LUXWH)</h3>
           <p class="text-xs text-slate-500">จัดการคำนำหน้ารหัส (Prefix Code) สำหรับสร้าง SKU อัตโนมัติ</p>
         </div>
         <button onclick="openCategoryModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm flex items-center space-x-2 transition-all">
@@ -334,7 +333,7 @@
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <div>
           <h3 class="font-bold text-slate-800">ประวัติการรับเข้า - เบิกออก</h3>
-          <p class="text-xs text-slate-500">บันทึกทุกกิจกรรมพร้อมชื่อผู้เบิก-รับเข้า และหมายเหตุ</p>
+          <p class="text-xs text-slate-500">บันทึกประวัติการเบิกใช้อุปกรณ์และยาใน LUXASIA WH</p>
         </div>
         <button onclick="exportToCSV()" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold rounded-xl shadow-sm flex items-center space-x-2 transition-all">
           <i class="fa-solid fa-file-excel text-emerald-400"></i> <span>ส่งออกไฟล์ CSV พร้อม Note</span>
@@ -681,12 +680,11 @@
     }
 
     function generateSKUSuggestion(forceRegen = false) {
-      if (!forceRegen && document.getElementById('item-id').value) return; // don't overwrite if editing
+      if (!forceRegen && document.getElementById('item-id').value) return;
       const catId = document.getElementById('item-category').value;
       const cat = categories.find(c => c.id === catId);
-      const prefix = cat ? cat.prefix : 'ITEM';
+      const prefix = cat ? cat.prefix : 'LUX';
 
-      // Count existing with this prefix
       const count = items.filter(it => it.sku.startsWith(prefix)).length + 1;
       const padded = String(count).padStart(3, '0');
       document.getElementById('item-sku').value = `${prefix}-${padded}`;
@@ -705,7 +703,6 @@
       const min = parseInt(document.getElementById('item-min').value) || 5;
       const cost = parseFloat(document.getElementById('item-cost').value) || 0;
 
-      // Duplicate SKU validation
       const dup = items.find(it => it.sku === sku && it.id !== id);
       if (dup) {
         alert(`รหัส SKU ${sku} มีอยู่ในระบบแล้ว กรุณาใช้รหัสอื่น`);
@@ -713,13 +710,11 @@
       }
 
       if (id) {
-        // Update
         const idx = items.findIndex(it => it.id === id);
         if (idx !== -1) {
           items[idx] = { ...items[idx], sku, name, spec, catId, unit, location, stock, min, cost };
         }
       } else {
-        // Create
         items.push({
           id: 'it-' + Date.now(),
           sku, name, spec, catId, unit, location, stock, min, cost
@@ -776,7 +771,7 @@
         userLabel.textContent = 'ชื่อผู้รับเข้า / ผู้ตรวจรับ *';
         userInput.placeholder = 'ชื่อเจ้าหน้าที่คลังผู้รับของ';
         noteLabel.textContent = 'Note บันทึก / เลขที่ PO / ร้านค้าที่ซื้อ';
-        noteInput.placeholder = 'เช่น PO-691024, ใบเสร็จร้านยาฟาร์มาซี, สินค้าสั่งซื้อประจำเดือน';
+        noteInput.placeholder = 'เช่น PO-691024, ใบเสร็จร้านยา, สินค้าสั่งซื้อประจำเดือน';
       }
     }
 
@@ -831,7 +826,6 @@
         item.stock += qty;
       }
 
-      // Record History
       const now = new Date();
       const timestamp = now.toLocaleDateString('th-TH') + ' ' + now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
 
@@ -851,7 +845,6 @@
       persistData();
       alert(`บันทึกรายการ ${currentOpMode === 'OUT' ? 'เบิกออก' : 'รับเข้า'} สำเร็จเรียบร้อย`);
 
-      // Reset Form fields
       document.getElementById('tx-qty').value = '';
       document.getElementById('tx-notes').value = '';
       populateTxDropdown();
@@ -869,22 +862,18 @@
         { facingMode: "environment" },
         { fps: 10, qrbox: { width: 220, height: 220 } },
         (decodedText) => {
-          // Success Callback
           const scannedSku = decodedText.trim().toUpperCase();
           const match = items.find(it => it.sku === scannedSku);
           if (match) {
             document.getElementById('tx-item-select').value = match.sku;
             onTxItemChange();
             stopScanner();
-            // vibration if mobile
             if (navigator.vibrate) navigator.vibrate(100);
           } else {
             alert(`ไม่พบรหัส SKU "${scannedSku}" ในระบบ`);
           }
         },
-        (errorMessage) => {
-          // scan frame fail (keep searching)
-        }
+        (errorMessage) => {}
       ).catch(err => {
         alert('ไม่สามารถเข้าถึงกล้องได้: ' + err);
         stopScanner();
@@ -945,7 +934,6 @@
       const prefix = document.getElementById('cat-prefix').value.trim().toUpperCase();
       const desc = document.getElementById('cat-desc').value.trim();
 
-      // Check duplicates
       if (categories.some(c => c.prefix === prefix)) {
         alert(`คำนำหน้า (Prefix) "${prefix}" ถูกใช้งานแล้ว`);
         return;
@@ -992,7 +980,7 @@
         card.className = "bg-white p-4 rounded-xl border-2 border-slate-300 flex flex-col items-center justify-between text-center page-break-inside-avoid shadow-none";
         card.innerHTML = `
           <div class="w-full border-b pb-2 mb-2">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">SmartStock Label</span>
+            <span class="text-[10px] font-bold text-amber-600 uppercase tracking-widest">LUXASIA WH LABEL</span>
             <h4 class="font-extrabold text-sm text-slate-900 leading-tight">${it.name}</h4>
             <p class="text-[11px] text-slate-600 font-medium">${it.spec || '-'}</p>
           </div>
@@ -1004,7 +992,6 @@
         `;
         grid.appendChild(card);
 
-        // Generate QR code with library
         new QRCode(document.getElementById(`qrcode-${it.id}`), {
           text: it.sku,
           width: 100,
@@ -1069,7 +1056,7 @@
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.setAttribute("href", url);
-      link.setAttribute("download", `Stock_History_${new Date().toISOString().slice(0,10)}.csv`);
+      link.setAttribute("download", `LUXWH_Stock_History_${new Date().toISOString().slice(0,10)}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
